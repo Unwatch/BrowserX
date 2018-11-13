@@ -7,6 +7,8 @@
     "start": "electron . --inspect-brk=5858 "
   },
   "dependencies": {
+    "boostrap": "^2.0.0",
+    "bowl": "^0.1.1",
     "nodejs": "0.0.0"
   },
   "devDependencies": {

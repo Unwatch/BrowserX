@@ -1,16 +1,16 @@
 ﻿// Modules to control application life and create native browser window
 const { app, BrowserWindow } = require('electron')
-
+// var config = require("./config.json");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 // let child
-
+var url = ""
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({show: true})//resizable :false,movable :false,maximizable: false ,resizable :false
+  mainWindow = new BrowserWindow({show: false})//resizable :false,movable :false,maximizable: false ,resizable :false
   // child = new BrowserWindow({parent: mainWindow, modal: false, show: false, frame: false,width:800, height: 600})
-  mainWindow.maximize() 
+
   mainWindow.setMenuBarVisibility(false)
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
@@ -18,16 +18,24 @@ function createWindow() {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
   mainWindow.webContents.on('did-finish-load', function () { 
-    let code = `var webview = document.getElementById("webview");
-    webview.src="https://stackoverflow.com/";`
+    // mainWindow.show()
+    mainWindow.maximize() 
+    let code = `var webview = document.getElementById("webview");`
+    // code += `webview.src="https://stackoverflow.com/";` 
     code += `webview.style="width:`
-    code += mainWindow.getSize()[0]-24
+    code += mainWindow.getSize()[0]-16
     code += `px; height:`
-    code += mainWindow.getSize()[1]-125
+    code += mainWindow.getSize()[1]-80
     code += `px"`
     // code.replace("1000","1000")
     // webview.style="width:1000px; height:700px"`
     mainWindow.webContents.executeJavaScript(code)
+
+
+
+
+
+
   })
    
   mainWindow.on('ready-to-show', function () { 
@@ -35,14 +43,32 @@ function createWindow() {
     // child.setPosition(mainWindow.getPosition()[0]+9,mainWindow.getPosition()[1]+60)
     // mainWindow.show()
     // child.show()
+
+    // let code = `var webview = document.getElementById("webview");`
+    // code += `webview.style="width:`
+    // code += mainWindow.getSize()[0]-16
+    // code += `px; height:`
+    // code += mainWindow.getSize()[1]-125
+    // code += `px"`
+    // mainWindow.webContents.executeJavaScript(code)
+  })
+
+  mainWindow.on('show', function () { 
+    // let code = `var webview = document.getElementById("webview");`
+    // code += `webview.style="width:`
+    // code += mainWindow.getSize()[0]-16
+    // code += `px; height:`
+    // code += mainWindow.getSize()[1]-125
+    // code += `px"`
+    // mainWindow.webContents.executeJavaScript(code)
   })
 
   mainWindow.on('resize', function () {
     let code = `var webview = document.getElementById("webview");`
     code += `webview.style="width:`
-    code += mainWindow.getSize()[0]-24
+    code += mainWindow.getSize()[0]-16
     code += `px; height:`
-    code += mainWindow.getSize()[1]-125
+    code += mainWindow.getSize()[1]-80
     code += `px"`
     // code.replace("1000","1000")
     // webview.style="width:1000px; height:700px"`
