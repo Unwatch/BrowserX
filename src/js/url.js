@@ -40,7 +40,10 @@ function init() {
     // opt.value = config["data"][j].url;
     selector.options.add(new Option(config["data"][j].name, config["data"][j].url));
   }
+
+  ipc.send('invokeAction', config["default_url"]); 
 }
+
 
 function LoadUrl(url){
   ipc.send('invokeAction', url);     
