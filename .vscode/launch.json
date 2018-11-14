@@ -11,10 +11,22 @@
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
             "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd",
+                "runtimeArgs": [
+                    ".",
+                    "--enable-logging"
+                ],
             },
+            "env": {},
             "program": "${workspaceFolder}/main.js",
-            "protocol": "inspector"
+            "stopOnEntry": false,
+            "protocol": "inspector",
+            "scripts": {
+                //debug 表示项目需挂载调试程序
+                //brk 表示项目在启动后,运行第一行代码自动暂停
+                //5858 表示调试监听端口,若被占用,可自行更改
+                "start": "electron . --debug-brk=5858" 
+            }
         }
     ]
 }
