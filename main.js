@@ -5,21 +5,38 @@ var ipc = require('electron').ipcMain;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+
 // let child
 var url = ""
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({ show: false })//resizable :false,movable :false,maximizable: false ,resizable :false
   // child = new BrowserWindow({parent: mainWindow, modal: false, show: false, frame: false,width:800, height: 600})
-
+  // mainWindow.webContents.openDevTools()
   mainWindow.setMenuBarVisibility(false)
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
+
+  // const {net} = require('electron')
+  // const request = net.request('http://www.ddd.vip/dataInterface.php?type=client')
+  // request.on('response', (response) => {
+  //   response.on('data', (chunk) => {
+  //     console.log(`BODY: ${chunk}`)
+  //     console.log(`BODY1`)
+  //     console.log(`BODY1`)
+  //   })
+  //   response.on('end', () => {
+  //     console.log('No more data in response.')
+  //   })
+  // })
+  // request.end()
+
   // mainWindow.loadURL('http://www.baidu.com')
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
   mainWindow.webContents.on('did-finish-load', function () {
     // mainWindow.show()
+
     mainWindow.maximize()
     let code = `var webview = document.getElementById("webview");`
     // code += `webview.src="https://stackoverflow.com/";` 
@@ -35,13 +52,12 @@ function createWindow() {
 
   ipc.on('invokeAction', function (event, data) {
     let code = `var webview = document.getElementById("webview");`
-    code += `webview.src="` 
-    if((data.indexOf("https://")===-1)||data.indexOf("http://")===-1)
-    {
-      code += `https://` 
+    code += `webview.src="`
+    if ((data.indexOf("https://") === -1) && data.indexOf("http://") === -1) {
+      code += `https://`
     }
-    code += data 
-    code += `";` 
+    code += data
+    code += `";`
     mainWindow.webContents.executeJavaScript(code)
   });
 

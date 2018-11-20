@@ -4,6 +4,22 @@ const ipc = require('electron').ipcRenderer;
 // const fs = require("fs");
 
 // var config = require("./config.json");
+
+//设置地址栏宽度
+// var width = window.innerWidth;
+// var select = document.getElementById('urls');
+// select.style.width = "500px";
+// $(".sel_wrap").on("change", function () {
+//   var o;
+//   var opt = $(this).find('option');
+//   opt.each(function (i) {
+//     if (opt[i].selected == true) {
+//       o = opt[i].innerHTML;
+//     }
+//   })
+//   $(this).find('label').html(o);
+// }).trigger('change');
+
 var config =
 {
   "default_url": "www.hao123.com",
@@ -29,8 +45,24 @@ var config =
 //     selector.appendChild(opt);
 //   }
 // }
-
 function init() {
+  $.getJSON("http://www.ddd.vip/dataInterface.php?type=client", function (req) {
+    $.each(req, function (key, val) {
+      if (key == "default_url") {
+        LoadUrl(val);
+      }
+      else if(key == "data") {
+        var selector = document.getElementById("urls");
+        selector.options.length = 0;     
+        $.each(val, function (key_data, val_data) {
+          selector.options.add(new Option(val_data.name, val_data.url));
+        });
+      }
+    });
+  });
+}
+
+function init_bak() {
   var selector = document.getElementById("urls");
   selector.options.length = 0;
 
@@ -41,10 +73,9 @@ function init() {
     selector.options.add(new Option(config["data"][j].name, config["data"][j].url));
   }
 
-  ipc.send('invokeAction', config["default_url"]); 
+  ipc.send('invokeAction', config["default_url"]);
 }
 
-
-function LoadUrl(url){
-  ipc.send('invokeAction', url);     
+function LoadUrl(url) {
+  ipc.send('invokeAction', url);
 } 

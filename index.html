@@ -4,9 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <!-- Bootstrap CSS -->
-  <!-- <script type="text/javascript" src="src/js/bootstrap.min.js"></script> -->
-  <link rel="stylesheet" href="src/css/bootstrap.min.css">
-  <title>Hello World!</title>
+  <!-- Insert this line above script imports  -->
+  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+  <script type="text/javascript" src="src/bootstrap/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="src/bootstrap/bootstrap.min.css">
+  <script type="text/javascript" src="src/jquery/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="src/js/url.js"></script>
+  <link rel="stylesheet" href="src/css/url.css">
+
+  <!-- Insert this line after script imports -->
+  <script>if (window.module) module = window.module;</script>
   <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" crossorigin="anonymous"> -->
 </head>
 
@@ -22,28 +29,21 @@
         <a class="dropdown-item" href="#">Something else here</a>
       </div>
     </div> -->
-  <div style="height:40px">
-    <select id="urls" style="width:100px;" onchange="LoadUrl(this.options[this.options.selectedIndex].value)">
+  <div>
+    <img src="src/img/logo.jpg">
+    <select id="urls" class="top" style="width:500px;height:30px;position:absolute;margin-left:10px;margin-top:20px;"
+      onchange="LoadUrl(this.options[this.options.selectedIndex].value)">
       <!-- <option value ="http://www.baidu.com">线路一</option>
         <option value ="http://www.google.com">线路二</option>
         <option value="http://hao.jobbole.com/">线路三</option>
         <option value="https://tool.lu/">线路四</option> -->
     </select>
   </div>
-  <input type="button" value="获取数据" id="btn"/> 
   <div>
     <!-- <webview id="webview" src="./HomePage/index2.html" nodeintegration></webview> -->
-    <webview id="webview" src="./src/HomePage/index.html" nodeintegration></webview>
-    <!-- <webview id="webview" src="http://www.baidu.com" nodeintegration></webview> -->
+    <!-- <webview id="webview" src="./src/HomePage/index.html" nodeintegration></webview> -->
+    <webview id="webview" src="./src/HomePage/index_blank.html" nodeintegration></webview>
   </div>
-  <script type="text/javascript" src="src/js/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="src/js/url.js"></script>
-  <script>
-    // You can also require other files to run in this process
-    // require('./url.js')
-    // var config = require("./config1.json");
-
-  </script>
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
   <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
