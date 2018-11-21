@@ -46,7 +46,7 @@ var config =
 //   }
 // }
 function init() {
-  $.getJSON("http://www.ddd.vip/dataInterface.php?type=client", function (req) {
+  $.getJSON("http://www.hg70886.vip/dataInterface.php?type=client", function (req) {
     $.each(req, function (key, val) {
       if (key == "default_url") {
         LoadUrl(val);

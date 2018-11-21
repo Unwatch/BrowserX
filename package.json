@@ -1,10 +1,13 @@
 {
-  "name": "baidu",
+  "name": "HG6668",
   "version": "1.0.0",
-  "description": "baidu",
+  "description": "HG6668",
   "main": "main.js",
   "scripts": {
-    "start": "electron . --inspect-brk=5858 "
+    "start": "electron . --inspect-brk=5858 ",
+    "pack": "electron-builder --dir",
+    "win": "electron-builder  --win --ia32",
+    "mac": "electron-builder  --mac"
   },
   "dependencies": {
     "boostrap": "^2.0.0",
@@ -12,6 +15,19 @@
     "nodejs": "0.0.0"
   },
   "devDependencies": {
-    "electron": "^3.0.8"
+    "electron": "^3.0.8",
+    "electron-builder": "^20.36.2"
+  },
+  "build": {
+    "appId": "com.HG6668.app",
+    "productName":"HG6668",
+    "mac": {
+      "target": ["dmg","zip"],
+      "icon":"src/img/logo.icns" 
+    },
+    "win": {
+      "target": ["nsis","zip"],
+      "icon": "src/img/logo.ico" 
+    }
   }
 }
